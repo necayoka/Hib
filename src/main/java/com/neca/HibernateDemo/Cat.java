@@ -1,7 +1,12 @@
 package com.neca.HibernateDemo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Cat {	//POJO
 
+	@Id
 	private int id;
 	private String name;
 	private String color;
