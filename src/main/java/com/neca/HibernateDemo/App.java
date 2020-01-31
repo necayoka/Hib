@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
 
 public class App 
 {
@@ -16,7 +18,9 @@ public class App
 
         Configuration config = new Configuration().configure().addAnnotatedClass(Cat.class);
         
-        SessionFactory sf = (SessionFactory) config.buildSessionFactory();
+        ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        
+        SessionFactory sf = (SessionFactory) config.buildSessionFactory(reg);
         
         Session session = sf.openSession();
         
